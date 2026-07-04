@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carouzell Workshop Base Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="background-glow"></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="brand-icon">🎠</div>
+        <div>
+          <h1>Carouzell Workshop</h1>
+          <p>Base Builder</p>
+        </div>
+      </div>
+
+      <nav class="topnav" aria-label="Main navigation">
+        <button class="nav-button active" type="button">✦ Workshop</button>
+        <button class="nav-button" type="button">✧ Collection</button>
+        <button class="nav-button" type="button">📖 Guide</button>
+        <button class="nav-button" type="button">⚙ Settings</button>
+      </nav>
+    </header>
+
+    <main class="builder-grid">
+      <aside class="panel left-panel">
+        <section class="panel-section">
+          <div class="section-title">1. Choose Form</div>
+          <div class="option-grid" id="formOptions"></div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">2. Coat Color</div>
+          <p class="small-note">Natural coats and gentle fantasy swatches.</p>
+          <div class="swatch-grid" id="coatOptions"></div>
+        </section>
+
+        <section class="panel-section conditional-section hidden" id="skinSection">
+          <div class="section-title">2B. Skin Color</div>
+          <p class="small-note">Appears only for centaur, satyr, and hippocampustaur forms.</p>
+          <div class="swatch-grid" id="skinOptions"></div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">3. Markings</div>
+          <div class="option-grid small" id="markingOptions"></div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">4. Fantasy Effects</div>
+          <div class="option-grid small" id="effectOptions"></div>
+        </section>
+
+        <section class="panel-section rarity-guide">
+          <div class="section-title">Rarity Guide</div>
+          <p><span>✦</span> Common</p>
+          <p><span>✦✦</span> Rare</p>
+          <p><span>✦✦✦</span> Mythical</p>
+        </section>
+      </aside>
+
+      <section class="panel center-panel">
+        <div class="canvas-header">
+          <div>
+            <p class="eyebrow">Midnight Toymaker’s Canvas</p>
+            <h2>Preview Your Carouzell</h2>
+          </div>
+          <div class="canvas-actions">
+            <button id="randomizeBtn" type="button">🎲 Randomize</button>
+            <button id="resetBtn" type="button">↺ Reset</button>
+          </div>
+        </div>
+
+        <div class="preview-canvas" id="previewCanvas">
+          <div class="canvas-pattern">✦ ✧ ✦ ✧ ✦ ✧ ✦</div>
+          <div class="horse-preview" id="horsePreview" aria-label="Carouzell preview">
+            <div class="pole-layer"></div>
+            <div class="tail-layer"></div>
+            <div class="body-layer"></div>
+            <div class="human-layer"></div>
+            <div class="neck-layer"></div>
+            <div class="head-layer"></div>
+            <div class="ear-layer ear-one"></div>
+            <div class="ear-layer ear-two"></div>
+            <div class="mane-layer"></div>
+            <div class="leg-layer leg-one"></div>
+            <div class="leg-layer leg-two"></div>
+            <div class="leg-layer leg-three"></div>
+            <div class="leg-layer leg-four"></div>
+            <div class="marking-layer"></div>
+            <div class="effect-layer"></div>
+            <div class="orb-layer"></div>
+            <div class="ribbon-layer"></div>
+          </div>
+        </div>
+
+        <div class="selection-tray" id="selectionTray"></div>
+      </section>
+
+      <aside class="panel right-panel">
+        <section class="panel-section">
+          <div class="section-title">5. Orb / Soulmarble</div>
+          <div class="option-grid small" id="orbOptions"></div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">6. Pole</div>
+          <div class="option-grid small" id="poleOptions"></div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">7. Basic Ribbon</div>
+          <div class="option-grid small" id="ribbonOptions"></div>
+        </section>
+
+        <button class="export-button" id="exportBtn" type="button">Export PNG ✧</button>
+        <p class="export-note">Prototype export gives a design summary. Real transparent PNG export can be connected once your art layers are ready.</p>
+      </aside>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
