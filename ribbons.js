@@ -1,1 +1,1 @@
-window.POLES=[{id:'none',name:'None',rarity:'✦'},{id:'brass',name:'Brass Spiral',rarity:'✦'},{id:'silver',name:'Silver Spiral',rarity:'✦✦'},{id:'crystal',name:'Crystal Pole',rarity:'✦✦✦'}];
+window.RIBBONS=[{id:'none',name:'None',color:'',rarity:'✦'},{id:'lavender',name:'Lavender Bow',color:'#b995ff',rarity:'✦'},{id:'rose',name:'Rose Bow',color:'#ef9fbd',rarity:'✦'},{id:'ocean',name:'Ocean Bow',color:'#7fc9cf',rarity:'✦✦'}];

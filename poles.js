@@ -1,1 +1,1 @@
-window.ORBS=[{id:'none',name:'None',color:'',rarity:'✦'},{id:'pearl',name:'Pearl Soulmarble',color:'#f6d7e8',rarity:'✦'},{id:'moon',name:'Moon Soulmarble',color:'#bcdcff',rarity:'✦✦'},{id:'night',name:'Night Sky Soulmarble',color:'#4f38a7',rarity:'✦✦✦'}];
+window.POLES=[{id:'none',name:'None',rarity:'✦'},{id:'brass',name:'Brass Spiral',rarity:'✦'},{id:'silver',name:'Silver Spiral',rarity:'✦✦'},{id:'crystal',name:'Crystal Pole',rarity:'✦✦✦'}];

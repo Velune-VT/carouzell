@@ -1,7 +1,8 @@
-window.FORMS = [
-  { id:'horse', name:'Horse', icon:'🐴', rarity:'✦', usesSkin:false },
-  { id:'centaur', name:'Centaur', icon:'🎠', rarity:'✦', usesSkin:true },
-  { id:'hippocampus', name:'Hippocampus', icon:'🌊', rarity:'✦✦', usesSkin:false },
-  { id:'satyr', name:'Satyr', icon:'🐐', rarity:'✦✦', usesSkin:true },
-  { id:'hippocampustaur', name:'Hippocampustaur', icon:'🫧', rarity:'✦✦✦', usesSkin:true }
+window.SKIN = [
+  { id:'porcelain', name:'Porcelain', color:'#f2d8c8' },
+  { id:'fair', name:'Fair', color:'#e8c3a5' },
+  { id:'tan', name:'Tan', color:'#c78d63' },
+  { id:'brown', name:'Brown', color:'#8e5b42' },
+  { id:'deep', name:'Deep', color:'#5b3328' },
+  { id:'fantasy-lavender', name:'Lavender', color:'#c7a5e8' }
 ];
