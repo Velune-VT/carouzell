@@ -1,6 +1,7 @@
 const state = {
   form: "Horse",
   coat: "Cream",
+  skin: "Warm Ivory",
   marking: "None",
   effect: "None",
   orb: "None",
@@ -15,7 +16,8 @@ const data = {
     { name: "Horse", icon: "🐴", rarity: "✦" },
     { name: "Centaur", icon: "🎠", rarity: "✦" },
     { name: "Hippocampus", icon: "🌊", rarity: "✦✦" },
-    { name: "Satyr", icon: "🦌", rarity: "✦✦" }
+    { name: "Satyr", icon: "🦌", rarity: "✦✦" },
+    { name: "Hippocampustaur", icon: "🧜‍♀️", rarity: "✦✦✦" }
   ],
   coat: [
     { name: "Cream", color: "#f2e4d2", rarity: "✦" },
@@ -28,6 +30,16 @@ const data = {
     { name: "Seafoam", color: "#97d8d2", rarity: "✦✦" },
     { name: "Rose Milk", color: "#eab0c7", rarity: "✦✦" },
     { name: "Void", color: "#10091c", rarity: "✦✦✦" }
+  ],
+  skin: [
+    { name: "Warm Ivory", color: "#f2c8aa", rarity: "✦" },
+    { name: "Peach", color: "#e9ad88", rarity: "✦" },
+    { name: "Honey", color: "#c98555", rarity: "✦" },
+    { name: "Golden Brown", color: "#a66a43", rarity: "✦" },
+    { name: "Deep Brown", color: "#6f3f2b", rarity: "✦" },
+    { name: "Rose Porcelain", color: "#f3c7cc", rarity: "✦✦" },
+    { name: "Moonlit Lilac", color: "#c5afe6", rarity: "✦✦" },
+    { name: "Seafoam Tint", color: "#9ed6cb", rarity: "✦✦" }
   ],
   marking: [
     { name: "None", icon: "—", className: "", rarity: "✦" },
@@ -64,6 +76,7 @@ const data = {
 const mountIds = {
   form: "formOptions",
   coat: "coatOptions",
+  skin: "skinOptions",
   marking: "markingOptions",
   effect: "effectOptions",
   orb: "orbOptions",
@@ -93,16 +106,16 @@ function createOptionCard(item, type) {
   return button;
 }
 
-function createSwatch(item) {
+function createSwatch(item, type = "coat") {
   const button = document.createElement("button");
   button.type = "button";
   button.className = "swatch";
   button.title = `${item.name} ${item.rarity}`;
-  button.dataset.type = "coat";
+  button.dataset.type = type;
   button.dataset.name = item.name;
   button.style.background = item.color;
   button.addEventListener("click", () => {
-    state.coat = item.name;
+    state[type] = item.name;
     applyState();
   });
   return button;
@@ -113,7 +126,7 @@ function renderOptions() {
     const mount = document.getElementById(id);
     mount.innerHTML = "";
     data[type].forEach(item => {
-      mount.appendChild(type === "coat" ? createSwatch(item) : createOptionCard(item, type));
+      mount.appendChild(type === "coat" || type === "skin" ? createSwatch(item, type) : createOptionCard(item, type));
     });
   });
 }
@@ -124,13 +137,20 @@ function findItem(type, name) {
 
 function applyState() {
   const coat = findItem("coat", state.coat);
+  const skin = findItem("skin", state.skin);
   const marking = findItem("marking", state.marking);
   const effect = findItem("effect", state.effect);
   const orb = findItem("orb", state.orb);
   const ribbon = findItem("ribbon", state.ribbon);
 
   horsePreview.style.setProperty("--coat", coat?.color || "#f2e4d2");
+  horsePreview.style.setProperty("--skin", skin?.color || "#f2c8aa");
   horsePreview.style.setProperty("--orb", orb?.color || "#8763dd");
+  horsePreview.dataset.form = state.form;
+
+  const skinSection = document.getElementById("skinSection");
+  const usesSkin = ["Centaur", "Satyr", "Hippocampustaur"].includes(state.form);
+  skinSection.classList.toggle("hidden", !usesSkin);
   horsePreview.style.setProperty("--ribbon", ribbon?.color || "#b994ff");
 
   document.querySelector(".marking-layer").className = `marking-layer ${marking?.className || ""}`;
@@ -154,6 +174,7 @@ function updateActiveButtons() {
 function renderSelectionTray() {
   selectionTray.innerHTML = "";
   Object.entries(state).forEach(([key, value]) => {
+    if (key === "skin" && !["Centaur", "Satyr", "Hippocampustaur"].includes(state.form)) return;
     const chip = document.createElement("div");
     chip.className = "selection-chip";
     chip.innerHTML = `<b>${key}</b><span>${value}</span>`;
@@ -176,6 +197,9 @@ document.getElementById("randomizeBtn").addEventListener("click", () => {
   Object.keys(state).forEach(type => {
     state[type] = randomItem(data[type]).name;
   });
+  if (!["Centaur", "Satyr", "Hippocampustaur"].includes(state.form)) {
+    state.skin = defaults.skin;
+  }
   applyState();
 });
 

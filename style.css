@@ -15,6 +15,7 @@
   --coat: #f2e4d2;
   --orb: #8763dd;
   --ribbon: #b994ff;
+  --skin: #f2c8aa;
 }
 
 * { box-sizing: border-box; }
@@ -320,6 +321,7 @@ h1 {
 }
 
 .body-layer,
+.human-layer,
 .neck-layer,
 .head-layer,
 .leg-layer,
@@ -327,6 +329,50 @@ h1 {
   position: absolute;
   background: var(--coat);
   border: 4px solid rgba(106,78,122,0.48);
+}
+
+.human-layer {
+  width: 96px;
+  height: 142px;
+  left: 130px;
+  top: 58px;
+  border-radius: 48% 48% 34% 34%;
+  background: var(--skin);
+  display: none;
+  z-index: 4;
+}
+
+.horse-preview[data-form="Centaur"] .human-layer,
+.horse-preview[data-form="Satyr"] .human-layer,
+.horse-preview[data-form="Hippocampustaur"] .human-layer {
+  display: block;
+}
+
+.horse-preview[data-form="Centaur"] .neck-layer,
+.horse-preview[data-form="Satyr"] .neck-layer,
+.horse-preview[data-form="Hippocampustaur"] .neck-layer {
+  opacity: 0;
+}
+
+.horse-preview[data-form="Satyr"] .body-layer {
+  width: 220px;
+  left: 210px;
+  border-radius: 50% 45% 45% 55%;
+}
+
+.horse-preview[data-form="Hippocampus"] .tail-layer,
+.horse-preview[data-form="Hippocampustaur"] .tail-layer {
+  background: linear-gradient(135deg, #88d8e7, #7d6ed0 60%, #d8b5ff);
+  border-radius: 20% 80% 70% 30%;
+}
+
+.horse-preview[data-form="Hippocampus"] .leg-layer,
+.horse-preview[data-form="Hippocampustaur"] .leg-layer {
+  opacity: 0.35;
+}
+
+.horse-preview[data-form="Hippocampustaur"] .human-layer {
+  background: linear-gradient(180deg, var(--skin), color-mix(in srgb, var(--skin) 80%, #8fd4dd));
 }
 
 .body-layer {
@@ -513,7 +559,7 @@ h1 {
 
 .selection-tray {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(8, minmax(0, 1fr));
   gap: 7px;
   margin-top: 11px;
 }
@@ -548,6 +594,8 @@ h1 {
   padding: 17px;
   box-shadow: 0 0 26px rgba(247,207,134,0.25);
 }
+
+.hidden { display: none !important; }
 
 .toast {
   position: fixed;
