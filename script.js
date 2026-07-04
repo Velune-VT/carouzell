@@ -1,287 +1,245 @@
-const ASSET_ROOT = 'assets';
+const state = {
+  form: "Horse",
+  coat: "Cream",
+  marking: "None",
+  effect: "None",
+  orb: "None",
+  pole: "None",
+  ribbon: "None"
+};
 
-// Replace placeholder paths with your transparent PNGs later.
-// Every PNG should be the same size as the canvas: 1600 x 1200 is used here.
-const TRAITS = {
-  form: [
-    { id: 'horse', name: 'Horse', icon: '🐴', rarity: 'Common', color: '#f3dcc8', src: `${ASSET_ROOT}/bases/horse.png`, description: 'Classic Carouzell horse form.' },
-    { id: 'centaur', name: 'Centaur', icon: '♞', rarity: 'Common', color: '#d9c1ee', src: `${ASSET_ROOT}/bases/centaur.png`, description: 'Half human, half carousel horse form.' },
-    { id: 'hippocampus', name: 'Hippocampus', icon: '🌊', rarity: 'Rare', color: '#b9e8ef', src: `${ASSET_ROOT}/bases/hippocampus.png`, description: 'Oceanic form with aquatic traits.' },
-    { id: 'satyr', name: 'Satyr', icon: '🦌', rarity: 'Rare', color: '#d1b08b', src: `${ASSET_ROOT}/bases/satyr.png`, description: 'Humanoid form with horse satyr legs.' }
+const defaultState = { ...state };
+
+const data = {
+  forms: [
+    { name: "Horse", icon: "🐴", rarity: "✦" },
+    { name: "Centaur", icon: "🎠", rarity: "✦" },
+    { name: "Hippocampus", icon: "🌊", rarity: "✦✦" },
+    { name: "Satyr", icon: "🐐", rarity: "✦✦" }
   ],
-  coat: [
-    { id: 'none', name: 'None', icon: '—', rarity: 'Common', color: '#fff8ef', src: null, description: 'No coat layer selected.' },
-    { id: 'bay', name: 'Bay', icon: '●', rarity: 'Common', color: '#5b3329', src: `${ASSET_ROOT}/coats/bay.png`, description: 'A natural warm brown coat.' },
-    { id: 'black', name: 'Black', icon: '●', rarity: 'Common', color: '#21191d', src: `${ASSET_ROOT}/coats/black.png`, description: 'A dark natural coat.' },
-    { id: 'cream', name: 'Cream', icon: '●', rarity: 'Common', color: '#f4ddbc', src: `${ASSET_ROOT}/coats/cream.png`, description: 'A soft pale natural coat.' },
-    { id: 'lilac', name: 'Lilac Cream', icon: '●', rarity: 'Rare', color: '#c9b1e8', src: `${ASSET_ROOT}/coats/lilac-cream.png`, description: 'A mild fantasy coat color.' }
+
+  coats: [
+    { name: "Cream", color: "#f4e7d9", rarity: "✦" },
+    { name: "Bay", color: "#7a4a34", rarity: "✦" },
+    { name: "Black", color: "#251f25", rarity: "✦" },
+    { name: "Grey", color: "#a49b9b", rarity: "✦" },
+    { name: "Palomino", color: "#e6c078", rarity: "✦" },
+    { name: "Chestnut", color: "#9c5238", rarity: "✦" },
+    { name: "Blue Roan", color: "#6f7f91", rarity: "✦✦" },
+    { name: "Lavender Cream", color: "#d4b8f2", rarity: "✦✦" },
+    { name: "Seafoam", color: "#97d8d2", rarity: "✦✦" },
+    { name: "Rose Milk", color: "#eab0c7", rarity: "✦✦" },
+    { name: "Moon Blue", color: "#9fc8ee", rarity: "✦✦" },
+    { name: "Void", color: "#10091c", rarity: "✦✦✦" },
+    { name: "Nebula Plum", color: "#5c3a86", rarity: "✦✦✦" },
+    { name: "Starlight Gold", color: "#f5cf85", rarity: "✦✦✦" },
+    { name: "Aurora Mint", color: "#78dec9", rarity: "✦✦✦" }
   ],
+
   markings: [
-    { id: 'none', name: 'None', icon: '—', rarity: 'Common', color: '#fff8ef', src: null, description: 'No markings selected.' },
-    { id: 'socks', name: 'Socks', icon: '◒', rarity: 'Common', color: '#f7f0e8', src: `${ASSET_ROOT}/markings/socks.png`, description: 'Simple leg markings.' },
-    { id: 'paint', name: 'Paint', icon: '◌', rarity: 'Common', color: '#efe3d8', src: `${ASSET_ROOT}/markings/paint.png`, description: 'Classic painted body patches.' },
-    { id: 'star-appaloosa', name: 'Star Appaloosa', icon: '✦', rarity: 'Rare', color: '#8270c3', src: `${ASSET_ROOT}/markings/star-appaloosa.png`, description: 'Colorful star-shaped appaloosa markings.' }
+    { name: "None", icon: "—", className: "", rarity: "✦" },
+    { name: "Pinto", icon: "◖", className: "pinto", rarity: "✦" },
+    { name: "Appaloosa Spots", icon: "●", className: "spots", rarity: "✦" },
+    { name: "Star Appaloosa", icon: "✦", className: "stars", rarity: "✦✦" }
   ],
+
   effects: [
-    { id: 'none', name: 'None', icon: '—', rarity: 'Common', color: '#fff8ef', src: null, description: 'No fantasy effect selected.' },
-    { id: 'stardust', name: 'Stardust', icon: '✧', rarity: 'Rare', color: '#e7d5ff', src: `${ASSET_ROOT}/effects/stardust.png`, description: 'Soft magical sparkle overlay.' },
-    { id: 'aurora', name: 'Aurora', icon: '☄', rarity: 'Rare', color: '#7ddedc', src: `${ASSET_ROOT}/effects/aurora.png`, description: 'A mild fantasy gradient effect.' },
-    { id: 'galaxy', name: 'Galaxy', icon: '✹', rarity: 'Mythical', color: '#45317b', src: `${ASSET_ROOT}/effects/galaxy.png`, description: 'A full fantasy cosmic overlay.' }
+    { name: "None", icon: "—", className: "", rarity: "✦" },
+    { name: "Stardust", icon: "✦", className: "stardust", rarity: "✦✦" },
+    { name: "Aurora", icon: "☄", className: "aurora", rarity: "✦✦" },
+    { name: "Petals", icon: "✿", className: "petal", rarity: "✦✦" }
   ],
-  orb: [
-    { id: 'none', name: 'None', icon: '—', rarity: 'Common', color: '#fff8ef', src: null, description: 'No soulmarble selected.' },
-    { id: 'glass', name: 'Glass Orb', icon: '🔮', rarity: 'Common', color: '#dcefff', src: `${ASSET_ROOT}/orbs/glass.png`, description: 'A simple clear soulmarble.' },
-    { id: 'pink', name: 'Rose Orb', icon: '🔮', rarity: 'Rare', color: '#f6bfd5', src: `${ASSET_ROOT}/orbs/rose.png`, description: 'A rosy magical soulmarble.' },
-    { id: 'night-sky', name: 'Night Sky Orb', icon: '🌌', rarity: 'Mythical', color: '#1f245d', src: `${ASSET_ROOT}/orbs/night-sky.png`, description: 'A soulmarble filled with stars.' }
+
+  orbs: [
+    { name: "None", icon: "—", color: "", rarity: "✦" },
+    { name: "Pearl Orb", icon: "◉", color: "#f6d7e8", rarity: "✦" },
+    { name: "Moon Orb", icon: "◉", color: "#bcdcff", rarity: "✦✦" },
+    { name: "Night Sky Orb", icon: "◉", color: "#3b2a83", rarity: "✦✦✦" }
   ],
-  pole: [
-    { id: 'none', name: 'None', icon: '—', rarity: 'Common', color: '#fff8ef', src: null, description: 'No pole selected.' },
-    { id: 'brass', name: 'Brass Spiral', icon: '┃', rarity: 'Common', color: '#c99545', src: `${ASSET_ROOT}/poles/brass.png`, description: 'A classic brass carousel pole.' },
-    { id: 'silver', name: 'Silver Spiral', icon: '┃', rarity: 'Common', color: '#b7b6c3', src: `${ASSET_ROOT}/poles/silver.png`, description: 'A polished silver carousel pole.' },
-    { id: 'crystal', name: 'Crystal Pole', icon: '♢', rarity: 'Mythical', color: '#cfd8ff', src: `${ASSET_ROOT}/poles/crystal.png`, description: 'A luminous fantasy pole.' }
+
+  poles: [
+    { name: "None", icon: "—", rarity: "✦" },
+    { name: "Brass Spiral", icon: "▥", rarity: "✦" },
+    { name: "Silver Spiral", icon: "▥", rarity: "✦✦" },
+    { name: "Crystal Pole", icon: "♢", rarity: "✦✦✦" }
   ],
-  ribbon: [
-    { id: 'none', name: 'None', icon: '—', rarity: 'Common', color: '#fff8ef', src: null, description: 'No ribbon selected.' },
-    { id: 'lavender', name: 'Lavender Bow', icon: '🎀', rarity: 'Common', color: '#b79be4', src: `${ASSET_ROOT}/ribbons/lavender.png`, description: 'A soft ribbon accent.' },
-    { id: 'rose', name: 'Rose Bow', icon: '🎀', rarity: 'Common', color: '#f1a7ba', src: `${ASSET_ROOT}/ribbons/rose.png`, description: 'A pink ribbon accent.' },
-    { id: 'midnight', name: 'Midnight Bow', icon: '🎀', rarity: 'Rare', color: '#26326a', src: `${ASSET_ROOT}/ribbons/midnight.png`, description: 'A dark celestial ribbon.' }
+
+  ribbons: [
+    { name: "None", icon: "—", color: "", rarity: "✦" },
+    { name: "Lavender Bow", icon: "🎀", color: "#b995ff", rarity: "✦" },
+    { name: "Rose Bow", icon: "🎀", color: "#ef9fbd", rarity: "✦" },
+    { name: "Ocean Bow", icon: "🎀", color: "#7fc9cf", rarity: "✦✦" }
   ]
 };
 
-const state = {
-  form: TRAITS.form[0],
-  coat: TRAITS.coat[0],
-  markings: TRAITS.markings[0],
-  effects: TRAITS.effects[0],
-  orb: TRAITS.orb[0],
-  pole: TRAITS.pole[0],
-  ribbon: TRAITS.ribbon[0]
-};
+const horsePreview = document.getElementById("horsePreview");
+const selectionBar = document.getElementById("selectionBar");
+const toast = document.getElementById("toast");
 
-const canvas = document.getElementById('builderCanvas');
-const ctx = canvas.getContext('2d');
-const emptyNote = document.getElementById('emptyNote');
-const traitList = document.getElementById('traitList');
-
-const layerOrder = ['form', 'coat', 'markings', 'effects', 'pole', 'orb', 'ribbon'];
-const imageCache = new Map();
-
-function rarityStars(rarity) {
-  if (rarity === 'Mythical') return '✦✦✦';
-  if (rarity === 'Rare') return '✦✦';
-  return '✦';
+function rarityLabel(rarity) {
+  if (rarity === "✦✦✦") return "Mythical";
+  if (rarity === "✦✦") return "Rare";
+  return "Common";
 }
 
-function makeOption(category, item) {
-  const button = document.createElement('button');
-  button.className = 'option-card';
-  button.type = 'button';
-  button.dataset.id = item.id;
-  button.innerHTML = `
-    <span class="option-icon">${item.icon}</span>
+function createCard(item, type) {
+  const card = document.createElement("button");
+  card.type = "button";
+  card.className = "option-card";
+  card.dataset.type = type;
+  card.dataset.name = item.name;
+  card.title = `${item.name} — ${rarityLabel(item.rarity || "✦")}`;
+  card.innerHTML = `
+    <span class="rarity">${item.rarity || "✦"}</span>
+    <span class="option-icon">${item.icon || "✧"}</span>
     <span class="option-name">${item.name}</span>
-    <span class="option-rarity">${rarityStars(item.rarity)} ${item.rarity}</span>
   `;
-  button.addEventListener('click', () => selectTrait(category, item));
-  return button;
+
+  card.addEventListener("click", () => {
+    state[type] = item.name;
+    applyState();
+    refreshActive();
+  });
+
+  return card;
+}
+
+function createSwatch(item) {
+  const swatch = document.createElement("button");
+  swatch.type = "button";
+  swatch.className = "swatch";
+  swatch.dataset.type = "coat";
+  swatch.dataset.name = item.name;
+  swatch.title = `${item.name} — ${rarityLabel(item.rarity)}`;
+  swatch.style.background = item.color;
+  swatch.innerHTML = `<span class="rarity">${item.rarity}</span>`;
+
+  swatch.addEventListener("click", () => {
+    state.coat = item.name;
+    applyState();
+    refreshActive();
+  });
+
+  return swatch;
 }
 
 function renderOptions() {
-  const targets = {
-    form: 'formOptions', coat: 'coatOptions', markings: 'markingOptions', effects: 'effectOptions',
-    orb: 'orbOptions', pole: 'poleOptions', ribbon: 'ribbonOptions'
-  };
+  document.getElementById("formOptions").innerHTML = "";
+  document.getElementById("coatOptions").innerHTML = "";
+  document.getElementById("markingOptions").innerHTML = "";
+  document.getElementById("effectOptions").innerHTML = "";
+  document.getElementById("orbOptions").innerHTML = "";
+  document.getElementById("poleOptions").innerHTML = "";
+  document.getElementById("ribbonOptions").innerHTML = "";
 
-  Object.entries(targets).forEach(([category, targetId]) => {
-    const target = document.getElementById(targetId);
-    target.innerHTML = '';
-    TRAITS[category].forEach(item => target.appendChild(makeOption(category, item)));
+  data.forms.forEach(item => document.getElementById("formOptions").appendChild(createCard(item, "form")));
+  data.coats.forEach(item => document.getElementById("coatOptions").appendChild(createSwatch(item)));
+  data.markings.forEach(item => document.getElementById("markingOptions").appendChild(createCard(item, "marking")));
+  data.effects.forEach(item => document.getElementById("effectOptions").appendChild(createCard(item, "effect")));
+  data.orbs.forEach(item => document.getElementById("orbOptions").appendChild(createCard(item, "orb")));
+  data.poles.forEach(item => document.getElementById("poleOptions").appendChild(createCard(item, "pole")));
+  data.ribbons.forEach(item => document.getElementById("ribbonOptions").appendChild(createCard(item, "ribbon")));
+}
+
+function findByName(collection, name) {
+  return collection.find(item => item.name === name);
+}
+
+function applyState() {
+  const coat = findByName(data.coats, state.coat);
+  const marking = findByName(data.markings, state.marking);
+  const effect = findByName(data.effects, state.effect);
+  const orb = findByName(data.orbs, state.orb);
+  const ribbon = findByName(data.ribbons, state.ribbon);
+
+  if (coat) horsePreview.style.setProperty("--coat", coat.color);
+
+  document.querySelector(".marking-layer").className = `marking-layer ${marking?.className || ""}`;
+  document.querySelector(".effect-layer").className = `effect-layer ${effect?.className || ""}`;
+
+  const orbLayer = document.querySelector(".orb-layer");
+  orbLayer.classList.toggle("show", state.orb !== "None");
+  if (orb?.color) horsePreview.style.setProperty("--orb", orb.color);
+
+  document.querySelector(".pole-layer").classList.toggle("show", state.pole !== "None");
+
+  const ribbonLayer = document.querySelector(".ribbon-layer");
+  ribbonLayer.classList.toggle("show", state.ribbon !== "None");
+  if (ribbon?.color) horsePreview.style.setProperty("--ribbon", ribbon.color);
+
+  renderSelections();
+}
+
+function renderSelections() {
+  selectionBar.innerHTML = "";
+  Object.entries(state).forEach(([key, value]) => {
+    const div = document.createElement("div");
+    div.className = "selection";
+    div.innerHTML = `<strong>${key}</strong><span>${value}</span>`;
+    selectionBar.appendChild(div);
   });
 }
 
-function selectTrait(category, item) {
-  state[category] = item;
-  updateSelectedCards();
-  updateDetails(category, item);
-  updateSelectionStrip();
-  updateTraitList();
-  drawCanvas();
-}
-
-function updateSelectedCards() {
-  document.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
-  Object.entries(state).forEach(([category, item]) => {
-    const section = document.querySelector(`[data-section="${category}"]`);
-    const card = section?.querySelector(`[data-id="${item.id}"]`);
-    if (card) card.classList.add('selected');
+function refreshActive() {
+  document.querySelectorAll(".option-card, .swatch").forEach(el => {
+    el.classList.toggle("active", state[el.dataset.type] === el.dataset.name);
   });
 }
 
-function updateDetails(category, item) {
-  document.getElementById('detailTitle').textContent = category.replace('-', ' ').toUpperCase();
-  document.getElementById('detailRarity').textContent = `${rarityStars(item.rarity)} ${item.rarity}`;
-  document.getElementById('itemName').textContent = item.name;
-  document.getElementById('itemDescription').textContent = item.description;
-
-  const swatchRow = document.getElementById('swatchRow');
-  swatchRow.innerHTML = '';
-  TRAITS[category].slice(0, 12).forEach(trait => {
-    const swatch = document.createElement('button');
-    swatch.className = 'swatch';
-    swatch.title = trait.name;
-    swatch.style.background = trait.color || '#fff8ef';
-    swatch.addEventListener('click', () => selectTrait(category, trait));
-    swatchRow.appendChild(swatch);
-  });
+function randomItem(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function updateSelectionStrip() {
-  const strip = document.getElementById('selectionStrip');
-  strip.innerHTML = '';
-  Object.entries(state).forEach(([category, item]) => {
-    const chip = document.createElement('div');
-    chip.className = 'selection-chip';
-    chip.innerHTML = `<strong>${category}</strong><span>${item.icon}</span><br>${item.name}`;
-    strip.appendChild(chip);
-  });
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  window.clearTimeout(showToast.timeout);
+  showToast.timeout = window.setTimeout(() => toast.classList.remove("show"), 4200);
 }
 
-function updateTraitList() {
-  traitList.value = Object.entries(state)
-    .map(([category, item]) => `${category}: ${item.name} (${item.rarity})`)
-    .join('\n');
+function getDesignSummary() {
+  return Object.entries(state)
+    .map(([key, value]) => `${key}: ${value}`)
+    .join("\n");
 }
 
-function loadImage(src) {
-  if (!src) return Promise.resolve(null);
-  if (imageCache.has(src)) return imageCache.get(src);
+document.getElementById("randomizeBtn").addEventListener("click", () => {
+  state.form = randomItem(data.forms).name;
+  state.coat = randomItem(data.coats).name;
+  state.marking = randomItem(data.markings).name;
+  state.effect = randomItem(data.effects).name;
+  state.orb = randomItem(data.orbs).name;
+  state.pole = randomItem(data.poles).name;
+  state.ribbon = randomItem(data.ribbons).name;
+  applyState();
+  refreshActive();
+  showToast("A new Carouzell design has been shuffled in the workshop ✧");
+});
 
-  const promise = new Promise(resolve => {
-    const img = new Image();
-    img.onload = () => resolve(img);
-    img.onerror = () => resolve(null);
-    img.src = src;
-  });
-  imageCache.set(src, promise);
-  return promise;
-}
+document.getElementById("resetBtn").addEventListener("click", () => {
+  Object.assign(state, defaultState);
+  applyState();
+  refreshActive();
+  showToast("The workshop canvas has been reset.");
+});
 
-async function drawCanvas() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+document.getElementById("exportBtn").addEventListener("click", async () => {
+  const summary = `Prototype export summary:\n\n${getDesignSummary()}\n\nPNG export can be connected after you replace the CSS horse with transparent PNG layers.`;
 
-  // soft preview backdrop; remove this if you want the canvas preview transparent too
-  ctx.fillStyle = 'rgba(255, 248, 239, 0.5)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  let foundAnyImage = false;
-
-  for (const category of layerOrder) {
-    const item = state[category];
-    const img = await loadImage(item.src);
-    if (img) {
-      foundAnyImage = true;
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    }
+  try {
+    await navigator.clipboard.writeText(getDesignSummary());
+    showToast(`${summary}\n\nCopied trait list to clipboard.`);
+  } catch (error) {
+    showToast(summary);
   }
+});
 
-  if (!foundAnyImage) drawPlaceholderBase();
-  emptyNote.style.display = foundAnyImage ? 'none' : 'block';
-}
-
-function drawPlaceholderBase() {
-  ctx.save();
-  ctx.strokeStyle = '#8d67b2';
-  ctx.lineWidth = 8;
-  ctx.globalAlpha = 0.85;
-
-  // simple placeholder horse silhouette so the layout feels alive before assets exist
-  ctx.beginPath();
-  ctx.ellipse(820, 650, 360, 160, 0, 0, Math.PI * 2);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.ellipse(470, 505, 110, 150, -0.4, 0, Math.PI * 2);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(565, 590); ctx.lineTo(630, 760);
-  ctx.moveTo(760, 775); ctx.lineTo(745, 980);
-  ctx.moveTo(920, 775); ctx.lineTo(900, 980);
-  ctx.moveTo(1060, 740); ctx.lineTo(1110, 960);
-  ctx.moveTo(620, 740); ctx.lineTo(585, 950);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.arc(1120, 620, 70, 0, Math.PI * 2);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(900, 330); ctx.lineTo(900, 1050);
-  ctx.stroke();
-  ctx.font = '48px Georgia';
-  ctx.fillStyle = '#8d67b2';
-  ctx.fillText('Carouzell Preview', 590, 190);
-  ctx.restore();
-}
-
-function randomize() {
-  Object.keys(state).forEach(category => {
-    const items = TRAITS[category];
-    state[category] = items[Math.floor(Math.random() * items.length)];
+document.querySelectorAll(".section-title").forEach(button => {
+  button.addEventListener("click", () => {
+    button.closest(".workshop-section").classList.toggle("open");
   });
-  updateSelectedCards();
-  updateDetails('form', state.form);
-  updateSelectionStrip();
-  updateTraitList();
-  drawCanvas();
-}
-
-function reset() {
-  Object.keys(state).forEach(category => { state[category] = TRAITS[category][0]; });
-  updateSelectedCards();
-  updateDetails('form', state.form);
-  updateSelectionStrip();
-  updateTraitList();
-  drawCanvas();
-}
-
-async function exportPNG() {
-  const exportCanvas = document.createElement('canvas');
-  exportCanvas.width = canvas.width;
-  exportCanvas.height = canvas.height;
-  const exportCtx = exportCanvas.getContext('2d');
-
-  for (const category of layerOrder) {
-    const item = state[category];
-    const img = await loadImage(item.src);
-    if (img) exportCtx.drawImage(img, 0, 0, exportCanvas.width, exportCanvas.height);
-  }
-
-  // If there are no assets yet, export the placeholder instead.
-  const hasAssets = layerOrder.some(category => state[category].src);
-  if (!hasAssets) {
-    exportCtx.drawImage(canvas, 0, 0);
-  }
-
-  const link = document.createElement('a');
-  link.download = 'carouzell-base.png';
-  link.href = exportCanvas.toDataURL('image/png');
-  link.click();
-}
-
-function setupAccordions() {
-  document.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const current = header.closest('.accordion');
-      current.classList.toggle('open');
-    });
-  });
-}
-
-document.getElementById('randomizeBtn').addEventListener('click', randomize);
-document.getElementById('resetBtn').addEventListener('click', reset);
-document.getElementById('exportBtn').addEventListener('click', exportPNG);
+});
 
 renderOptions();
-setupAccordions();
-updateSelectedCards();
-updateDetails('form', state.form);
-updateSelectionStrip();
-updateTraitList();
-drawCanvas();
+applyState();
+refreshActive();
