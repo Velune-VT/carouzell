@@ -1,245 +1,100 @@
 const state = {
-  form: "Horse",
-  coat: "Cream",
-  marking: "None",
-  effect: "None",
-  orb: "None",
-  pole: "None",
-  ribbon: "None"
+  form: 'Horse', coat: 'Cream', marking: 'None', effect: 'None', orb: 'None', pole: 'None', ribbon: 'None'
 };
-
-const defaultState = { ...state };
 
 const data = {
   forms: [
-    { name: "Horse", icon: "🐴", rarity: "✦" },
-    { name: "Centaur", icon: "🎠", rarity: "✦" },
-    { name: "Hippocampus", icon: "🌊", rarity: "✦✦" },
-    { name: "Satyr", icon: "🐐", rarity: "✦✦" }
+    {name:'Horse', icon:'🐴', rarity:'✦'}, {name:'Centaur', icon:'🎠', rarity:'✦'},
+    {name:'Hippocampus', icon:'🌊', rarity:'✦✦'}, {name:'Satyr', icon:'🐐', rarity:'✦✦'}
   ],
-
   coats: [
-    { name: "Cream", color: "#f4e7d9", rarity: "✦" },
-    { name: "Bay", color: "#7a4a34", rarity: "✦" },
-    { name: "Black", color: "#251f25", rarity: "✦" },
-    { name: "Grey", color: "#a49b9b", rarity: "✦" },
-    { name: "Palomino", color: "#e6c078", rarity: "✦" },
-    { name: "Chestnut", color: "#9c5238", rarity: "✦" },
-    { name: "Blue Roan", color: "#6f7f91", rarity: "✦✦" },
-    { name: "Lavender Cream", color: "#d4b8f2", rarity: "✦✦" },
-    { name: "Seafoam", color: "#97d8d2", rarity: "✦✦" },
-    { name: "Rose Milk", color: "#eab0c7", rarity: "✦✦" },
-    { name: "Moon Blue", color: "#9fc8ee", rarity: "✦✦" },
-    { name: "Void", color: "#10091c", rarity: "✦✦✦" },
-    { name: "Nebula Plum", color: "#5c3a86", rarity: "✦✦✦" },
-    { name: "Starlight Gold", color: "#f5cf85", rarity: "✦✦✦" },
-    { name: "Aurora Mint", color: "#78dec9", rarity: "✦✦✦" }
+    {name:'Cream', color:'#f3e5d5', rarity:'✦'}, {name:'Bay', color:'#7a4a34', rarity:'✦'},
+    {name:'Black', color:'#26212a', rarity:'✦'}, {name:'Grey', color:'#aaa0a0', rarity:'✦'},
+    {name:'Palomino', color:'#e7c27b', rarity:'✦'}, {name:'Blue Roan', color:'#6f8093', rarity:'✦✦'},
+    {name:'Lavender Cream', color:'#d2b7f0', rarity:'✦✦'}, {name:'Seafoam', color:'#98d8d2', rarity:'✦✦'},
+    {name:'Rose Milk', color:'#e9adc5', rarity:'✦✦'}, {name:'Void', color:'#10091c', rarity:'✦✦✦'}
   ],
-
   markings: [
-    { name: "None", icon: "—", className: "", rarity: "✦" },
-    { name: "Pinto", icon: "◖", className: "pinto", rarity: "✦" },
-    { name: "Appaloosa Spots", icon: "●", className: "spots", rarity: "✦" },
-    { name: "Star Appaloosa", icon: "✦", className: "stars", rarity: "✦✦" }
+    {name:'None', icon:'—', className:'', rarity:'✦'}, {name:'Pinto', icon:'◖', className:'pinto', rarity:'✦'},
+    {name:'Appaloosa Spots', icon:'●', className:'spots', rarity:'✦'}, {name:'Star Appaloosa', icon:'✦', className:'stars', rarity:'✦✦'}
   ],
-
   effects: [
-    { name: "None", icon: "—", className: "", rarity: "✦" },
-    { name: "Stardust", icon: "✦", className: "stardust", rarity: "✦✦" },
-    { name: "Aurora", icon: "☄", className: "aurora", rarity: "✦✦" },
-    { name: "Petals", icon: "✿", className: "petal", rarity: "✦✦" }
+    {name:'None', icon:'—', className:'', rarity:'✦'}, {name:'Stardust', icon:'✦', className:'stardust', rarity:'✦✦'},
+    {name:'Aurora', icon:'☄', className:'aurora', rarity:'✦✦'}, {name:'Petals', icon:'✿', className:'petals', rarity:'✦✦'}
   ],
-
   orbs: [
-    { name: "None", icon: "—", color: "", rarity: "✦" },
-    { name: "Pearl Orb", icon: "◉", color: "#f6d7e8", rarity: "✦" },
-    { name: "Moon Orb", icon: "◉", color: "#bcdcff", rarity: "✦✦" },
-    { name: "Night Sky Orb", icon: "◉", color: "#3b2a83", rarity: "✦✦✦" }
+    {name:'None', icon:'—', color:'', rarity:'✦'}, {name:'Pearl Orb', icon:'◉', color:'#f6d7e8', rarity:'✦'},
+    {name:'Moon Orb', icon:'☾', color:'#bcdcff', rarity:'✦✦'}, {name:'Night Sky Orb', icon:'✦', color:'#3b2a83', rarity:'✦✦✦'}
   ],
-
   poles: [
-    { name: "None", icon: "—", rarity: "✦" },
-    { name: "Brass Spiral", icon: "▥", rarity: "✦" },
-    { name: "Silver Spiral", icon: "▥", rarity: "✦✦" },
-    { name: "Crystal Pole", icon: "♢", rarity: "✦✦✦" }
+    {name:'None', icon:'—', rarity:'✦'}, {name:'Brass Spiral', icon:'┃', rarity:'✦'},
+    {name:'Silver Spiral', icon:'┃', rarity:'✦✦'}, {name:'Crystal Pole', icon:'♢', rarity:'✦✦✦'}
   ],
-
   ribbons: [
-    { name: "None", icon: "—", color: "", rarity: "✦" },
-    { name: "Lavender Bow", icon: "🎀", color: "#b995ff", rarity: "✦" },
-    { name: "Rose Bow", icon: "🎀", color: "#ef9fbd", rarity: "✦" },
-    { name: "Ocean Bow", icon: "🎀", color: "#7fc9cf", rarity: "✦✦" }
+    {name:'None', icon:'—', color:'', rarity:'✦'}, {name:'Lavender Bow', icon:'🎀', color:'#b993ff', rarity:'✦'},
+    {name:'Rose Bow', icon:'🎀', color:'#ef9fbd', rarity:'✦'}, {name:'Ocean Bow', icon:'🎀', color:'#7fc9cf', rarity:'✦✦'}
   ]
 };
 
-const horsePreview = document.getElementById("horsePreview");
-const selectionBar = document.getElementById("selectionBar");
-const toast = document.getElementById("toast");
+const horse = document.getElementById('horsePreview');
+const selectionBar = document.getElementById('selectionBar');
 
-function rarityLabel(rarity) {
-  if (rarity === "✦✦✦") return "Mythical";
-  if (rarity === "✦✦") return "Rare";
-  return "Common";
+function makeCard(item, type){
+  const el = document.createElement('button');
+  el.className = 'card';
+  el.dataset.type = type; el.dataset.name = item.name;
+  el.innerHTML = `<span class="badge">${item.rarity || '✦'}</span><div class="icon">${item.icon || '✧'}</div><div>${item.name}</div>`;
+  el.addEventListener('click',()=>{ state[type]=item.name; applyState(); });
+  return el;
 }
-
-function createCard(item, type) {
-  const card = document.createElement("button");
-  card.type = "button";
-  card.className = "option-card";
-  card.dataset.type = type;
-  card.dataset.name = item.name;
-  card.title = `${item.name} — ${rarityLabel(item.rarity || "✦")}`;
-  card.innerHTML = `
-    <span class="rarity">${item.rarity || "✦"}</span>
-    <span class="option-icon">${item.icon || "✧"}</span>
-    <span class="option-name">${item.name}</span>
-  `;
-
-  card.addEventListener("click", () => {
-    state[type] = item.name;
-    applyState();
-    refreshActive();
-  });
-
-  return card;
+function makeSwatch(item){
+  const el = document.createElement('button');
+  el.className = 'swatch'; el.title = `${item.name} ${item.rarity}`; el.dataset.type='coat'; el.dataset.name=item.name;
+  el.style.background = item.color;
+  el.addEventListener('click',()=>{ state.coat=item.name; applyState(); });
+  return el;
 }
-
-function createSwatch(item) {
-  const swatch = document.createElement("button");
-  swatch.type = "button";
-  swatch.className = "swatch";
-  swatch.dataset.type = "coat";
-  swatch.dataset.name = item.name;
-  swatch.title = `${item.name} — ${rarityLabel(item.rarity)}`;
-  swatch.style.background = item.color;
-  swatch.innerHTML = `<span class="rarity">${item.rarity}</span>`;
-
-  swatch.addEventListener("click", () => {
-    state.coat = item.name;
-    applyState();
-    refreshActive();
-  });
-
-  return swatch;
+function renderOptions(){
+  data.forms.forEach(x=>formOptions.appendChild(makeCard(x,'form')));
+  data.coats.forEach(x=>coatOptions.appendChild(makeSwatch(x)));
+  data.markings.forEach(x=>markingOptions.appendChild(makeCard(x,'marking')));
+  data.effects.forEach(x=>effectOptions.appendChild(makeCard(x,'effect')));
+  data.orbs.forEach(x=>orbOptions.appendChild(makeCard(x,'orb')));
+  data.poles.forEach(x=>poleOptions.appendChild(makeCard(x,'pole')));
+  data.ribbons.forEach(x=>ribbonOptions.appendChild(makeCard(x,'ribbon')));
 }
-
-function renderOptions() {
-  document.getElementById("formOptions").innerHTML = "";
-  document.getElementById("coatOptions").innerHTML = "";
-  document.getElementById("markingOptions").innerHTML = "";
-  document.getElementById("effectOptions").innerHTML = "";
-  document.getElementById("orbOptions").innerHTML = "";
-  document.getElementById("poleOptions").innerHTML = "";
-  document.getElementById("ribbonOptions").innerHTML = "";
-
-  data.forms.forEach(item => document.getElementById("formOptions").appendChild(createCard(item, "form")));
-  data.coats.forEach(item => document.getElementById("coatOptions").appendChild(createSwatch(item)));
-  data.markings.forEach(item => document.getElementById("markingOptions").appendChild(createCard(item, "marking")));
-  data.effects.forEach(item => document.getElementById("effectOptions").appendChild(createCard(item, "effect")));
-  data.orbs.forEach(item => document.getElementById("orbOptions").appendChild(createCard(item, "orb")));
-  data.poles.forEach(item => document.getElementById("poleOptions").appendChild(createCard(item, "pole")));
-  data.ribbons.forEach(item => document.getElementById("ribbonOptions").appendChild(createCard(item, "ribbon")));
+function applyState(){
+  const coat = data.coats.find(x=>x.name===state.coat);
+  const marking = data.markings.find(x=>x.name===state.marking);
+  const effect = data.effects.find(x=>x.name===state.effect);
+  const orb = data.orbs.find(x=>x.name===state.orb);
+  const ribbon = data.ribbons.find(x=>x.name===state.ribbon);
+  if(coat) horse.style.setProperty('--coat', coat.color);
+  document.querySelector('.markings').className = `markings ${marking?.className || ''}`;
+  document.querySelector('.effects').className = `effects ${effect?.className || ''}`;
+  const orbLayer = document.querySelector('.orb');
+  orbLayer.classList.toggle('show', state.orb !== 'None');
+  if(orb?.color) horse.style.setProperty('--orb', orb.color);
+  document.querySelector('.pole').classList.toggle('show', state.pole !== 'None');
+  const ribbonLayer = document.querySelector('.ribbon');
+  ribbonLayer.classList.toggle('show', state.ribbon !== 'None');
+  if(ribbon?.color) horse.style.setProperty('--ribbon', ribbon.color);
+  updateSelections(); updateActive();
 }
-
-function findByName(collection, name) {
-  return collection.find(item => item.name === name);
+function updateSelections(){
+  selectionBar.innerHTML = Object.entries(state).map(([k,v])=>`<div class="selection"><b>${k}</b>${v}</div>`).join('');
 }
-
-function applyState() {
-  const coat = findByName(data.coats, state.coat);
-  const marking = findByName(data.markings, state.marking);
-  const effect = findByName(data.effects, state.effect);
-  const orb = findByName(data.orbs, state.orb);
-  const ribbon = findByName(data.ribbons, state.ribbon);
-
-  if (coat) horsePreview.style.setProperty("--coat", coat.color);
-
-  document.querySelector(".marking-layer").className = `marking-layer ${marking?.className || ""}`;
-  document.querySelector(".effect-layer").className = `effect-layer ${effect?.className || ""}`;
-
-  const orbLayer = document.querySelector(".orb-layer");
-  orbLayer.classList.toggle("show", state.orb !== "None");
-  if (orb?.color) horsePreview.style.setProperty("--orb", orb.color);
-
-  document.querySelector(".pole-layer").classList.toggle("show", state.pole !== "None");
-
-  const ribbonLayer = document.querySelector(".ribbon-layer");
-  ribbonLayer.classList.toggle("show", state.ribbon !== "None");
-  if (ribbon?.color) horsePreview.style.setProperty("--ribbon", ribbon.color);
-
-  renderSelections();
+function updateActive(){
+  document.querySelectorAll('.card,.swatch').forEach(el=>el.classList.toggle('active', state[el.dataset.type] === el.dataset.name));
 }
-
-function renderSelections() {
-  selectionBar.innerHTML = "";
-  Object.entries(state).forEach(([key, value]) => {
-    const div = document.createElement("div");
-    div.className = "selection";
-    div.innerHTML = `<strong>${key}</strong><span>${value}</span>`;
-    selectionBar.appendChild(div);
-  });
-}
-
-function refreshActive() {
-  document.querySelectorAll(".option-card, .swatch").forEach(el => {
-    el.classList.toggle("active", state[el.dataset.type] === el.dataset.name);
-  });
-}
-
-function randomItem(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function showToast(message) {
-  toast.textContent = message;
-  toast.classList.add("show");
-  window.clearTimeout(showToast.timeout);
-  showToast.timeout = window.setTimeout(() => toast.classList.remove("show"), 4200);
-}
-
-function getDesignSummary() {
-  return Object.entries(state)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join("\n");
-}
-
-document.getElementById("randomizeBtn").addEventListener("click", () => {
-  state.form = randomItem(data.forms).name;
-  state.coat = randomItem(data.coats).name;
-  state.marking = randomItem(data.markings).name;
-  state.effect = randomItem(data.effects).name;
-  state.orb = randomItem(data.orbs).name;
-  state.pole = randomItem(data.poles).name;
-  state.ribbon = randomItem(data.ribbons).name;
-  applyState();
-  refreshActive();
-  showToast("A new Carouzell design has been shuffled in the workshop ✧");
+function randomFrom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+randomizeBtn.addEventListener('click',()=>{
+  state.form=randomFrom(data.forms).name; state.coat=randomFrom(data.coats).name; state.marking=randomFrom(data.markings).name;
+  state.effect=randomFrom(data.effects).name; state.orb=randomFrom(data.orbs).name; state.pole=randomFrom(data.poles).name; state.ribbon=randomFrom(data.ribbons).name; applyState();
 });
-
-document.getElementById("resetBtn").addEventListener("click", () => {
-  Object.assign(state, defaultState);
-  applyState();
-  refreshActive();
-  showToast("The workshop canvas has been reset.");
+resetBtn.addEventListener('click',()=>{ Object.assign(state,{form:'Horse',coat:'Cream',marking:'None',effect:'None',orb:'None',pole:'None',ribbon:'None'}); applyState(); });
+exportBtn.addEventListener('click',()=>{
+  const txt = 'Prototype export summary:\n\n' + Object.entries(state).map(([k,v])=>`${k}: ${v}`).join('\n');
+  toast.textContent = txt; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),6000);
 });
-
-document.getElementById("exportBtn").addEventListener("click", async () => {
-  const summary = `Prototype export summary:\n\n${getDesignSummary()}\n\nPNG export can be connected after you replace the CSS horse with transparent PNG layers.`;
-
-  try {
-    await navigator.clipboard.writeText(getDesignSummary());
-    showToast(`${summary}\n\nCopied trait list to clipboard.`);
-  } catch (error) {
-    showToast(summary);
-  }
-});
-
-document.querySelectorAll(".section-title").forEach(button => {
-  button.addEventListener("click", () => {
-    button.closest(".workshop-section").classList.toggle("open");
-  });
-});
-
-renderOptions();
-applyState();
-refreshActive();
+renderOptions(); applyState();

@@ -7,127 +7,113 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="starscape" aria-hidden="true"></div>
-
-  <div class="app-shell">
+  <div class="app">
     <header class="topbar">
-      <div class="brand-block">
-        <div class="brand-icon">🎠</div>
+      <div class="brand">
+        <div class="seal">🎠</div>
         <div>
           <h1>Carouzell Workshop</h1>
           <p>Base Builder</p>
         </div>
       </div>
-
-      <nav class="nav-tabs" aria-label="Workshop navigation">
-        <button class="nav-tab active">✦ Workshop</button>
-        <button class="nav-tab">✧ Collection</button>
-        <button class="nav-tab">📖 Guide</button>
-        <button class="nav-tab">⚙ Settings</button>
+      <nav class="tabs">
+        <button class="active">✦ Workshop</button>
+        <button>✧ Collection</button>
+        <button>📖 Guide</button>
       </nav>
     </header>
 
-    <main class="builder-layout">
-      <aside class="panel left-panel" aria-label="Main customization options">
-        <section class="workshop-section open">
-          <button class="section-title" type="button">1. Choose Form <span>⌄</span></button>
-          <div class="section-body grid three" id="formOptions"></div>
+    <main class="builder">
+      <aside class="panel left">
+        <section class="box">
+          <h2>1. Choose Form</h2>
+          <div class="option-grid" id="formOptions"></div>
         </section>
 
-        <section class="workshop-section open">
-          <button class="section-title" type="button">2. Coat Color <span>⌄</span></button>
-          <div class="section-body">
-            <p class="tiny-label">Natural + gentle fantasy swatches</p>
-            <div class="swatch-grid" id="coatOptions"></div>
-          </div>
+        <section class="box">
+          <h2>2. Coat Color</h2>
+          <p class="hint">Natural and gentle fantasy swatches.</p>
+          <div class="swatches" id="coatOptions"></div>
         </section>
 
-        <section class="workshop-section open">
-          <button class="section-title" type="button">3. Markings <span>⌄</span></button>
-          <div class="section-body grid two" id="markingOptions"></div>
+        <section class="box">
+          <h2>3. Markings</h2>
+          <div class="option-grid two" id="markingOptions"></div>
         </section>
 
-        <section class="workshop-section open">
-          <button class="section-title" type="button">4. Fantasy Effects <span>⌄</span></button>
-          <div class="section-body grid two" id="effectOptions"></div>
+        <section class="box">
+          <h2>4. Fantasy Effects</h2>
+          <div class="option-grid two" id="effectOptions"></div>
         </section>
 
-        <div class="rarity-guide">
-          <h3>Rarity Guide</h3>
-          <p><span>✦</span> Common</p>
-          <p><span>✦✦</span> Rare</p>
-          <p><span>✦✦✦</span> Mythical</p>
-        </div>
+        <section class="rarity box">
+          <h2>Rarity Guide</h2>
+          <p><b>✦</b> Common</p>
+          <p><b>✦✦</b> Rare</p>
+          <p><b>✦✦✦</b> Mythical</p>
+        </section>
       </aside>
 
-      <section class="stage-card" aria-label="Character preview area">
-        <div class="stage-toolbar">
+      <section class="stage panel">
+        <div class="stage-head">
           <div>
-            <span class="eyebrow">Midnight Toymaker’s Canvas</span>
+            <p class="eyebrow">Midnight Toymaker’s Canvas</p>
             <h2>Preview Your Carouzell</h2>
           </div>
-          <div class="tool-buttons">
+          <div class="actions">
             <button id="randomizeBtn">🎲 Randomize</button>
             <button id="resetBtn">↺ Reset</button>
           </div>
         </div>
 
-        <div class="preview-stage" id="previewStage">
-          <div class="paper-corners" aria-hidden="true"></div>
-          <div class="ambient-sparkles" aria-hidden="true"></div>
-
-          <div class="horse-preview" id="horsePreview" aria-label="Prototype Carouzell preview">
-            <div class="pole-layer"></div>
-            <div class="horse-tail"></div>
-            <div class="horse-leg leg-1"></div>
-            <div class="horse-leg leg-2"></div>
-            <div class="horse-leg leg-3"></div>
-            <div class="horse-leg leg-4"></div>
-            <div class="horse-body"></div>
-            <div class="horse-neck"></div>
-            <div class="horse-head"></div>
-            <div class="horse-ear ear-1"></div>
-            <div class="horse-ear ear-2"></div>
-            <div class="horse-mane"></div>
-            <div class="marking-layer"></div>
-            <div class="effect-layer"></div>
-            <div class="orb-layer"></div>
-            <div class="ribbon-layer"></div>
+        <div class="canvas" id="previewStage">
+          <div class="canvas-stars">✦ ✧ ✦ ✧ ✦ ✧ ✦</div>
+          <div class="horse" id="horsePreview">
+            <div class="pole"></div>
+            <div class="tail"></div>
+            <div class="body"></div>
+            <div class="neck"></div>
+            <div class="head"></div>
+            <div class="ear one"></div>
+            <div class="ear two"></div>
+            <div class="mane"></div>
+            <div class="leg l1"></div>
+            <div class="leg l2"></div>
+            <div class="leg l3"></div>
+            <div class="leg l4"></div>
+            <div class="markings"></div>
+            <div class="effects"></div>
+            <div class="orb"></div>
+            <div class="ribbon"></div>
           </div>
         </div>
 
-        <div class="selection-drawer">
-          <div class="drawer-title">Current Selections</div>
-          <div class="selection-bar" id="selectionBar"></div>
-        </div>
+        <div class="selection-bar" id="selectionBar"></div>
       </section>
 
-      <aside class="panel right-panel" aria-label="Species feature options">
-        <section class="workshop-section open">
-          <button class="section-title" type="button">5. Orb / Soulmarble <span>⌄</span></button>
-          <div class="section-body grid two" id="orbOptions"></div>
+      <aside class="panel right">
+        <section class="box">
+          <h2>5. Orb / Soulmarble</h2>
+          <div class="option-grid two" id="orbOptions"></div>
         </section>
 
-        <section class="workshop-section open">
-          <button class="section-title" type="button">6. Pole <span>⌄</span></button>
-          <div class="section-body grid two" id="poleOptions"></div>
+        <section class="box">
+          <h2>6. Pole</h2>
+          <div class="option-grid two" id="poleOptions"></div>
         </section>
 
-        <section class="workshop-section open">
-          <button class="section-title" type="button">7. Basic Ribbon <span>⌄</span></button>
-          <div class="section-body grid two" id="ribbonOptions"></div>
+        <section class="box">
+          <h2>7. Basic Ribbon</h2>
+          <div class="option-grid two" id="ribbonOptions"></div>
         </section>
 
-        <div class="export-panel">
-          <button class="export-btn" id="exportBtn">Export PNG ✧</button>
-          <p>This prototype exports a design summary for now. Real PNG export can be added once your transparent art layers are ready.</p>
-        </div>
+        <button class="export" id="exportBtn">Export PNG ✧</button>
+        <p class="note">Prototype: exports a design summary for now. Real PNG export can be added after your transparent art layers are ready.</p>
       </aside>
     </main>
   </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
+  <div class="toast" id="toast"></div>
   <script src="script.js"></script>
 </body>
 </html>
