@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carouzell Workshop Base Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">♞</div>
+        <div>
+          <h1>Carouzell Workshop</h1>
+          <p>Base Builder</p>
+        </div>
+      </div>
 
+      <nav class="topnav" aria-label="Main navigation">
+        <button class="nav-btn active">✦ Workshop</button>
+        <button class="nav-btn">Gallery</button>
+        <button class="nav-btn">Collection</button>
+        <button class="nav-btn">Guide</button>
+      </nav>
+
+      <button class="journal-btn">📖 My Journal</button>
+    </header>
+
+    <main class="builder-grid">
+      <aside class="left-panel panel">
+        <section class="accordion open" data-section="form">
+          <button class="accordion-header">1. Choose Form <span>⌄</span></button>
+          <div class="accordion-body card-grid" id="formOptions"></div>
+        </section>
+
+        <section class="accordion" data-section="coat">
+          <button class="accordion-header">2. Coat <span>⌄</span></button>
+          <div class="accordion-body card-grid" id="coatOptions"></div>
+        </section>
+
+        <section class="accordion" data-section="markings">
+          <button class="accordion-header">3. Markings <span>⌄</span></button>
+          <div class="accordion-body card-grid" id="markingOptions"></div>
+        </section>
+
+        <section class="accordion" data-section="effects">
+          <button class="accordion-header">4. Effects <span>⌄</span></button>
+          <div class="accordion-body card-grid" id="effectOptions"></div>
+        </section>
+
+        <section class="accordion" data-section="orb">
+          <button class="accordion-header">5. Orb <span>⌄</span></button>
+          <div class="accordion-body card-grid" id="orbOptions"></div>
+        </section>
+
+        <section class="accordion" data-section="pole">
+          <button class="accordion-header">6. Pole <span>⌄</span></button>
+          <div class="accordion-body card-grid" id="poleOptions"></div>
+        </section>
+
+        <section class="accordion" data-section="ribbon">
+          <button class="accordion-header">7. Ribbon <span>⌄</span></button>
+          <div class="accordion-body card-grid" id="ribbonOptions"></div>
+        </section>
+
+        <div class="rarity-guide">
+          <h2>Rarity Guide</h2>
+          <p><span class="star common">✦</span> Common</p>
+          <p><span class="star uncommon">✦✦</span> Rare</p>
+          <p><span class="star mythical">✦✦✦</span> Mythical</p>
+        </div>
+      </aside>
+
+      <section class="stage-panel panel">
+        <div class="tool-row">
+          <button class="tool active">↖</button>
+          <button class="tool">✋</button>
+          <button class="tool" id="randomizeBtn">🎲 Randomize</button>
+          <button class="tool" id="resetBtn">↺ Reset</button>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="builderCanvas" width="1600" height="1200" aria-label="Carouzell preview canvas"></canvas>
+          <div class="empty-note" id="emptyNote">
+            Add your transparent PNG layers into the assets folders, then update script.js paths.
+          </div>
+        </div>
+
+        <div class="selection-strip" id="selectionStrip"></div>
+      </section>
+
+      <aside class="right-panel panel">
+        <div class="category-title">
+          <h2 id="detailTitle">Coat Color</h2>
+          <span id="detailRarity">✦ Common</span>
+        </div>
+
+        <div class="swatch-row" id="swatchRow"></div>
+
+        <div class="detail-card">
+          <h3 id="itemName">Choose an item</h3>
+          <p id="itemDescription">Selected traits will appear here with their rarity and notes.</p>
+        </div>
+
+        <div class="trait-list-box">
+          <h3>Current Trait List</h3>
+          <textarea id="traitList" readonly></textarea>
+        </div>
+
+        <button class="export-btn" id="exportBtn">Export PNG ⤓</button>
+        <p class="export-note">Exports the preview as a transparent PNG.</p>
+      </aside>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
