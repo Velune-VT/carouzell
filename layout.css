@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carouzell Workshop Builder</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/panels.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">🎠</div>
+        <div>
+          <h1>Carouzell Workshop</h1>
+          <p>Interactive Base Builder</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="randomizeBtn" class="soft-button">Randomize ✦</button>
+        <button id="resetBtn" class="soft-button">Reset</button>
+      </div>
+    </header>
+
+    <main class="builder-grid">
+      <aside class="workshop-nav panel">
+        <h2>Workshop Rooms</h2>
+        <button class="nav-item active" data-room="forms">Forms</button>
+        <button class="nav-item" data-room="coats">Coat Colors</button>
+        <button class="nav-item" data-room="markings">Markings</button>
+        <button class="nav-item" data-room="orbs">Soulmarbles</button>
+        <button class="nav-item" data-room="poles">Poles</button>
+        <button class="nav-item" data-room="ribbons">Ribbons</button>
+        <button class="nav-item" data-room="export">Export</button>
+
+        <div class="note-card">
+          <strong>Builder Rule</strong>
+          <span>Rarities are labeled for species use. This prototype lets you preview everything.</span>
+        </div>
+      </aside>
+
+      <section class="preview-panel panel">
+        <div class="preview-title">
+          <span>Midnight Toymaker's Canvas</span>
+          <span id="formLabel">Horse Form</span>
+        </div>
+        <div class="preview-stage" id="previewStage">
+          <div class="moon-window"></div>
+          <div class="character" id="character">
+            <div class="pole visual-part"></div>
+            <div class="tail visual-part"></div>
+            <div class="body visual-part"></div>
+            <div class="neck visual-part"></div>
+            <div class="head visual-part"></div>
+            <div class="human-torso visual-part"></div>
+            <div class="human-head visual-part"></div>
+            <div class="arm arm-left visual-part"></div>
+            <div class="arm arm-right visual-part"></div>
+            <div class="leg leg-a visual-part"></div>
+            <div class="leg leg-b visual-part"></div>
+            <div class="leg leg-c visual-part"></div>
+            <div class="leg leg-d visual-part"></div>
+            <div class="fin-tail visual-part"></div>
+            <div class="marking-layer visual-part"></div>
+            <div class="fantasy-layer visual-part"></div>
+            <div class="orb visual-part"></div>
+            <div class="ribbon visual-part">🎀</div>
+          </div>
+        </div>
+        <div class="selection-tray" id="selectionTray"></div>
+      </section>
+
+      <aside class="trait-browser panel">
+        <div class="browser-header">
+          <div>
+            <h2 id="roomTitle">Forms</h2>
+            <p id="roomSubtitle">Choose the body type for your Carouzell.</p>
+          </div>
+        </div>
+        <div id="traitContent" class="trait-content"></div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="data/forms.js"></script>
+  <script src="data/coats.js"></script>
+  <script src="data/markings.js"></script>
+  <script src="data/orbs.js"></script>
+  <script src="data/poles.js"></script>
+  <script src="data/ribbons.js"></script>
+  <script src="data/skin.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
