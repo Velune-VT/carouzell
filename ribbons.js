@@ -1,1 +1,0 @@
-window.RIBBONS=[{id:'none',name:'None',color:'',rarity:'✦'},{id:'lavender',name:'Lavender Bow',color:'#b995ff',rarity:'✦'},{id:'rose',name:'Rose Bow',color:'#ef9fbd',rarity:'✦'},{id:'ocean',name:'Ocean Bow',color:'#7fc9cf',rarity:'✦✦'}];
