@@ -1,20 +1,8 @@
-const App = (() => {
-  const state = { form:'horse', formName:'Horse', skin:'fair', skinName:'Fair', skinColor:'#e8c3a5', coat:'white', coatName:'White', coatColor:'#f4efe8', effectName:'None', effectClass:'', marking:'none', markingName:'None', markingClass:'', orb:'none', orbName:'None', orbColor:'', pole:'none', poleName:'None', ribbon:'none', ribbonName:'None', ribbonColor:'' };
-  let currentRoom='forms';
-  function usesSkin(){ return FORMS.find(f=>f.id===state.form)?.usesSkin; }
-  function refresh(){ Renderer.apply(state); UI.renderTray(state); UI.renderRoom(currentRoom); }
-  function selectForm(f){ state.form=f.id; state.formName=f.name; if(!f.usesSkin){state.skinName='Hidden'} refresh(); }
-  function selectSkin(s){ state.skin=s.id; state.skinName=s.name; state.skinColor=s.color; refresh(); }
-  function selectCoat(c){ if(c.color){state.coat=c.id; state.coatName=c.name; state.coatColor=c.color;} state.effectName=c.effect?c.name:'None'; state.effectClass=c.effect||''; refresh(); }
-  function selectMarking(m){ state.marking=m.id; state.markingName=m.name; state.markingClass=m.className; refresh(); }
-  function selectOrb(o){ state.orb=o.id; state.orbName=o.name; state.orbColor=o.color||''; refresh(); }
-  function selectPole(p){ state.pole=p.id; state.poleName=p.name; refresh(); }
-  function selectRibbon(r){ state.ribbon=r.id; state.ribbonName=r.name; state.ribbonColor=r.color||''; refresh(); }
-  function reset(){ Object.assign(state,{form:'horse',formName:'Horse',skin:'fair',skinName:'Fair',skinColor:'#e8c3a5',coat:'white',coatName:'White',coatColor:'#f4efe8',effectName:'None',effectClass:'',marking:'none',markingName:'None',markingClass:'',orb:'none',orbName:'None',orbColor:'',pole:'none',poleName:'None',ribbon:'none',ribbonName:'None',ribbonColor:''}); refresh(); }
-  function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
-  function allCoats(){let out=[]; Object.values(COATS).forEach(r=>Object.values(r.categories).forEach(a=>out.push(...a))); return out;}
-  function randomize(){ selectForm(pick(FORMS)); if(usesSkin()) selectSkin(pick(SKIN)); selectCoat(pick(allCoats())); selectMarking(pick(Object.values(MARKINGS).flat())); selectOrb(pick(ORBS)); selectPole(pick(POLES)); selectRibbon(pick(RIBBONS)); refresh(); }
-  function init(){ document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>{currentRoom=b.dataset.room; UI.setRoom(currentRoom)}); document.getElementById('resetBtn').onclick=reset; document.getElementById('randomizeBtn').onclick=randomize; refresh(); UI.setRoom('forms'); }
-  return { state, init, usesSkin, selectForm, selectSkin, selectCoat, selectMarking, selectOrb, selectPole, selectRibbon };
-})();
-window.addEventListener('DOMContentLoaded', App.init);
+:root{
+  --bg:#13091f; --bg2:#28133f; --panel:rgba(36,20,61,.9); --panel2:rgba(255,246,232,.92);
+  --gold:#f2c77e; --gold2:#a46f37; --cream:#fff4dd; --ink:#2d1a3f; --lav:#d8c1ff;
+  --line:rgba(242,199,126,.42); --shadow:0 22px 60px rgba(0,0,0,.35);
+  --coat:#f0dfce; --skin:#d7a77d; --orb:#8f6ee8; --ribbon:#c7a1ff;
+}
+*{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:Georgia,'Times New Roman',serif;color:var(--cream)}
+body{background:radial-gradient(circle at 20% 0%,rgba(181,125,255,.25),transparent 32%),linear-gradient(135deg,var(--bg),var(--bg2) 55%,#100719);overflow-x:hidden}.stars{position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.4) 1px,transparent 1.5px);background-size:48px 48px;opacity:.13}.app-shell{width:min(1500px,100%);margin:auto;padding:18px}.panel{border:1px solid var(--line);background:var(--panel);border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(8px)}button{font:inherit;cursor:pointer}.topbar{height:88px;border:1px solid var(--line);background:rgba(24,11,42,.93);border-radius:24px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;padding:0 22px}.brand{display:flex;align-items:center;gap:14px}.brand-mark{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#fff2c4,var(--gold2));font-size:30px;color:#231038}.brand h1{font-size:30px;color:var(--gold);margin:0;text-transform:uppercase;letter-spacing:.05em}.brand p{margin:3px 0 0;color:var(--lav);text-transform:uppercase;letter-spacing:.18em;font-size:12px}.top-actions{display:flex;gap:10px}.soft-button{border:1px solid var(--line);color:var(--cream);background:rgba(255,255,255,.08);border-radius:14px;padding:10px 15px}.soft-button:hover,.nav-item:hover,.trait-card:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(242,199,126,.18)}
