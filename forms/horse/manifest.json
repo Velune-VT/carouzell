@@ -1,0 +1,55 @@
+{
+  "name": "Horse",
+  "version": 1,
+
+  "assetSets": {
+    "eyes": "equine",
+    "pupils": "default",
+    "lashes": "equine"
+  },
+
+  "assetFolder": "assets",
+  "anchorFolder": "anchors",
+
+  "supports": {
+    "pole": true,
+    "saddle": true,
+    "saddlePad": true,
+    "bridle": true,
+    "breastCollar": true,
+    "barding": true,
+    "torsoArmor": false,
+    "legArmor": true,
+    "fins": false
+  },
+
+  "renderOrder": [
+    "horse_fill",
+    "horse_hooves",
+
+    "eye_white",
+    "eye_iris_colormask",
+    "eye_iris_gradient",
+
+    "pupil",
+
+    "eye_highlight",
+
+    "horse_outline",
+
+    "lashes",
+    "lashes_gradientmask"
+  ],
+
+  "defaultView": {
+    "scale": 1.0,
+    "offsetX": 0,
+    "offsetY": 0
+  },
+
+  "idle": {
+    "enabled": true,
+    "amplitude": 6,
+    "speed": 1.2
+  }
+}
