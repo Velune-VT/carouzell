@@ -1,0 +1,59 @@
+{
+  "name": "Hippocampus",
+  "version": 1,
+
+  "assetSets": {
+    "eyes": "equine",
+    "pupils": "default",
+    "lashes": "equine"
+  },
+
+  "assetFolder": "assets",
+  "anchorFolder": "anchors",
+
+  "supports": {
+    "pole": true,
+
+    "saddle": true,
+    "saddlePad": true,
+    "bridle": true,
+    "breastCollar": true,
+
+    "barding": false,
+
+    "torsoArmor": false,
+    "legArmor": true,
+
+    "fins": true
+  },
+
+  "renderOrder": [
+    "Hippocampus_Fill",
+    "Hippocampus_Hooves",
+
+    "Eye_White",
+    "Eye_Iris_Colormask",
+    "Eye_Iris_Gradient",
+
+    "Pupil",
+
+    "Eye_Highlight"
+
+    "Hippocampus_Outline",
+
+    "Lashes",
+    "Lashes_GradientMask",
+  ],
+
+  "defaultView": {
+    "scale": 1.0,
+    "offsetX": 0,
+    "offsetY": 0
+  },
+
+  "idle": {
+    "enabled": true,
+    "amplitude": 6,
+    "speed": 1.2
+  }
+}
